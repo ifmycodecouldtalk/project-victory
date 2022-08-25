@@ -11,7 +11,11 @@ with others around the world with their productivity (what I personally believed
 > *There are already productivity apps made by large corporations. Why should users choose Victory?*
 
 Let's look at some of the current leading applications for productivity:
-    * Todoist: A popular to-do list application. The issue? The users have no incentive to complete the tasks within the app!
+
+* Todoist: A popular to-do list application. The issue? The users have no incentive to complete the tasks within the app!
                 It's a fantastic app, if only the user had a driving force that ensured that they kept opening the app.
-    * Trello: Another task management application. With this one, I just feel like the UI can be made simpler, less crowded. With
+    
+* Trello: Another task management application. With this one, I just feel like the UI can be made simpler, less crowded. With
                 Franklin's Schedule Tree model, there is less need for clutter and the user's tasks all fit within one view.
+
+Every other productivity app available, to my knowledge, lacks a competitive ranking system
