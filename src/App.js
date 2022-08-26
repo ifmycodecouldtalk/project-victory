@@ -1,13 +1,17 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
+import { Home } from './pages/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export class App extends React.Component {
   render(){
     return (
-      <div>
-        <h1 className='text-center'>Testing</h1>
-      </div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </BrowserRouter>
     )
   }
 }
