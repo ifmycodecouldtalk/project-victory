@@ -5,8 +5,6 @@ const cors = require("cors");
 const publicPath = path.join(__dirname, '..', 'build');
 const app = express();
 const db = require("./models");
-require('./routes/auth.routes')(app);
-require('./routes/user.routes')(app);
 const Role = db.role;
 
 var corsOptions = {
@@ -14,8 +12,8 @@ var corsOptions = {
 };
 
 db.sequelize.sync({force: true}).then(() => {
-    console.log('Drop and Resync Db');
-    initial();
+  console.log('Drop and Resync Db');
+  initial();
 });
 
 app.use(express.static(publicPath));
@@ -26,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
 });
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

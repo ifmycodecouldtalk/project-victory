@@ -2,6 +2,7 @@ const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.role;
+const Task = db.task;
 const Op = db.Sequelize.Op;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -76,4 +77,13 @@ exports.signin = (req, res) => {
     .catch(err => {
       res.status(500).send({ message: err.message });
     });
+};
+exports.createTask = (req, res) => {
+  Task.create({
+    name: req.body.name,
+    description: req.body.description,
+    username: req.params.username
+  }).then(
+    res.send({message: "Task created successfully"})
+  );
 };
