@@ -11,10 +11,13 @@ var corsOptions = {
   origin: "http://localhost:8081"
 };
 
+/*
 db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync Db');
   initial();
 });
+*/
+db.sequelize.sync();
 
 app.use(express.static(publicPath));
 app.use(cors(corsOptions));

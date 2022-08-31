@@ -18,4 +18,6 @@ module.exports = function(app) {
   );
   app.post("/api/auth/signin", controller.signin);
   app.post("/api/task", controller.createTask);
+  app.post("/api/gettasks", controller.getUserTasks);
+  app.delete("/api/deleteuser", controller.deleteUser);
 };

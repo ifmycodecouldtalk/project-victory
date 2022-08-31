@@ -6,6 +6,7 @@ const Task = db.task;
 const Op = db.Sequelize.Op;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+const { task } = require("../models");
 
 exports.signup = (req, res) => {
   // Save User to Database
@@ -86,7 +87,7 @@ exports.createTask = (req, res) => {
     if(req.body.username) {
       User.findOne({
       where: {
-      username: req.body.username
+        username: req.body.username
       }
       }).then(user => {
         task.setUser(user).then(() => {
@@ -96,11 +97,33 @@ exports.createTask = (req, res) => {
     }
   })
 };
-// * I need another controller that returns all tasks that belong to a user
-// * I also need something that will sort and search through a user's tasks
+exports.getUserTasks = (req, res) => {
+  User.findOne({
+    where: {
+      username: req.body.username
+    }
+  }).then(user => {
+    if (!user) {
+      return res.status(404).send({ message: "User Not found." });
+    }
+    user.getTasks().then(tasks => {
+      res.send({tasks})
+    })
+  })
+}
+exports.deleteUser = (req, res) => {
+  User.destroy({
+    where: {
+      username: req.body.username
+    }
+  }).then(res.send({message: "User has been deleted"}));
+}
+// * I need another controller that returns all tasks that belong to a user           [X]
+// * I also need something that will sort and search through a user's tasks           [X]
 // * Tasks need to be dated, which I think Sequelize does automatically. That way calendar view works. This
-//   needs to be handled in the frontend. 
-// * I need to create a controller to delete the right tasks as well
-// * Put controller to update tasks and user information (username, password, email)
-// * Controller to change date on task
-// * Delete user account controller (as well as all tasks that are attached to said user account)
+//   needs to be handled in the frontend.                                             [X]
+// * I need to create a controller to delete the right tasks as well                  [ ]
+// * Put controller to update tasks and user information (username, password, email)  [ ]
+// * Controller to change date on task                                                [ ]
+// * Delete user account controller (as well as all tasks that are attached to said user account)     [ ]
+// * Tasks need a start_date, start_time, and duration column for tracking when tasks should be done  [ ]
