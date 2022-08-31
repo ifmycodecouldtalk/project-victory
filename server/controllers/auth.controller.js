@@ -81,9 +81,18 @@ exports.signin = (req, res) => {
 exports.createTask = (req, res) => {
   Task.create({
     name: req.body.name,
-    description: req.body.description,
-    username: req.params.username
-  }).then(
-    res.send({message: "Task created successfully"})
-  );
+    description: req.body.description
+  }).then(task => {
+    if(req.body.username) {
+      User.findOne({
+        where: {
+          username: req.body.username
+        }
+      }).then(user => {
+        task.setUser(user).then(() => {
+          res.send({ message: "Task created successfully!" });
+        })
+      })
+    }
+  })
 };

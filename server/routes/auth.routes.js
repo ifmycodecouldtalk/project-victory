@@ -17,5 +17,5 @@ module.exports = function(app) {
     controller.signup
   );
   app.post("/api/auth/signin", controller.signin);
-  app.post("/api/:username/task", controller.createTask);
+  app.post("/api/task", controller.createTask);
 };

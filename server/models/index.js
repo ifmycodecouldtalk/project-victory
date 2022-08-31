@@ -32,5 +32,9 @@ db.user.belongsToMany(db.role, {
   foreignKey: "userId",
   otherKey: "roleId"
 });
+db.user.hasMany(db.task, {
+  foreignKey: "UserId"
+});
+db.task.belongsTo(db.user);
 db.ROLES = ["user", "admin", "moderator"];
 module.exports = db;
