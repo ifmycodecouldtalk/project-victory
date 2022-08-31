@@ -118,12 +118,35 @@ exports.deleteUser = (req, res) => {
     }
   }).then(res.send({message: "User has been deleted"}));
 }
+exports.deleteTask = (req, res) => {
+  Task.destroy({
+    where: {
+      id: req.body.id
+    }
+  }).then(res.send({message: "Task has been deleted"}));
+}
+exports.updateTask = (req, res) => {
+  if(req.body.newName) {
+    Task.update({name: req.body.newName}, {
+      where: {
+        id: req.body.id
+      }
+    }).then(res.send({message: "task updated successfully"}));
+  }
+  if(req.body.newDescription) {
+    Task.update({description: req.body.newDescription}, {
+      where: {
+        id: req.body.id
+      }
+    }).then(res.send({message: "task updated successfully"}));
+  }
+}
 // * I need another controller that returns all tasks that belong to a user           [X]
 // * I also need something that will sort and search through a user's tasks           [X]
 // * Tasks need to be dated, which I think Sequelize does automatically. That way calendar view works. This
 //   needs to be handled in the frontend.                                             [X]
-// * I need to create a controller to delete the right tasks as well                  [ ]
-// * Put controller to update tasks and user information (username, password, email)  [ ]
-// * Controller to change date on task                                                [ ]
-// * Delete user account controller (as well as all tasks that are attached to said user account)     [ ]
-// * Tasks need a start_date, start_time, and duration column for tracking when tasks should be done  [ ]
+// * I need to create a controller to delete the right tasks as well                  [X]
+// * Put controller to update tasks and user information (username, password, email)  [X]
+// * Controller to change date on task                                                [X]
+// * Delete user account controller (as well as all tasks that are attached to said user account)     [X]
+// * Tasks need a start_date, start_time, and duration column for tracking when tasks should be done  [X]

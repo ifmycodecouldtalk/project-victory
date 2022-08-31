@@ -20,4 +20,6 @@ module.exports = function(app) {
   app.post("/api/task", controller.createTask);
   app.post("/api/gettasks", controller.getUserTasks);
   app.delete("/api/deleteuser", controller.deleteUser);
+  app.delete("/api/deletetask", controller.deleteTask);
+  app.put("/api/updatetask", controller.updateTask);
 };
