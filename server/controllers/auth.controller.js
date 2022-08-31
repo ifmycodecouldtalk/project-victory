@@ -96,3 +96,11 @@ exports.createTask = (req, res) => {
     }
   })
 };
+// * I need another controller that returns all tasks that belong to a user
+// * I also need something that will sort and search through a user's tasks
+// * Tasks need to be dated, which I think Sequelize does automatically. That way calendar view works. This
+//   needs to be handled in the frontend. 
+// * I need to create a controller to delete the right tasks as well
+// * Put controller to update tasks and user information (username, password, email)
+// * Controller to change date on task
+// * Delete user account controller (as well as all tasks that are attached to said user account)
